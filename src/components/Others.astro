@@ -1,0 +1,40 @@
+---
+import Star from "./icons/Star.astro";
+import { getCollection } from "astro:content";
+
+const books = await getCollection('books');
+console.log(books);
+---
+<section class="h-screen bg-[#0c0c0c] flex flex-col items-center pt-4 mt-20">
+	<h1 class="flex text-center text-4xl font-texth1 text-white underline decoration-[--var-color-text-red] my-4" data-aos="zoom-in-up">
+		OTROS LIBROS <Star class:list={["animate-pulse"]} />
+	</h1>
+
+	<div class="bento-grid w-[70%] mx-auto h-full">
+		<div class="grid grid-cols-4 grid-rows-4 gap-4 auto-rows-[minmax(100px,_1fr)] h-full">
+			{books.map((book, index) => {
+				const { slug, data } = book;
+				const { title, img, readTime } = data;
+
+				const cardSizeClass = index % 5 === 0 ? 'col-span-2 row-span-2' 
+									: index % 3 === 0 ? 'col-span-2 row-span-1'
+									: 'col-span-1 row-span-1';
+
+				return (
+					<a
+						href={`/libro/${slug}`}
+						class={`relative group rounded-xl overflow-hidden transition-transform hover:z-10 hover:scale-105 shadow-lg ${cardSizeClass}`}
+						data-aos="zoom-in">
+						<article class="relative w-full h-full">
+							<img src={`/${img}`} alt="" class="object-cover bg- w-full h-full transition-opacity duration-300 saturate-150 group-hover:opacity-75 bg-cover bg-center" />
+							<div class="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-60 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+								<h2 class="md:text-xl text-xs font-bold text-white text-center uppercase">{title}</h2>
+								<h2 class="md:text-xs text-xs font-bold text-[--var-color-text-blue] text-center">⏳ Lectura en {readTime} minutos.</h2>
+							</div>
+						</article>
+					</a>
+				);
+			})}
+		</div>
+	</div>
+</section>

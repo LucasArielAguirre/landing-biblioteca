@@ -1,0 +1,29 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Bienvenida from '../components/Bienvenida.astro';
+import Popular from '../components/Popular.astro';
+import Others from '../components/Others.astro';
+import Footer from '../components/Footer.astro';
+import Card from '../components/Card.astro';
+
+---
+
+<Layout title="Biblioteca 📚">
+	<main>
+		<Navbar/>
+		<Bienvenida/>
+		<Popular/>
+		<Others/>
+		<Footer/>
+	</main>
+</Layout>
+
+<style>
+
+	*{
+		padding: 0;
+		margin: 0;
+		box-sizing: border-box;
+	}
+</style>

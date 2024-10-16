@@ -1,0 +1,38 @@
+---
+import Star from "./icons/Star.astro";
+import { getCollection } from "astro:content";
+
+const books = await getCollection('books');
+console.log(books);
+---
+
+<section class="md:h-[110vh] h-full bg-[--var-bgcolor] flex flex-col items-center pt-4">
+	<h1 class="flex text-center text-4xl font-texth1 text-[--var-color-text] underline decoration-[--var-color-text-red]" data-aos="zoom-in-up mb-10">
+		MÁS POPULARES <Star class:list={["animate-pulse"]} />
+	</h1>
+
+	<div class="px-4 mx-auto max-w-screen-xl">
+		<div class="grid grid-cols-1 md:grid-cols-2 gap-5 m-8">
+			{books.map((book) => {
+				const { slug, data } = book;
+				const { title, author, img, readTime, description, buy } = data;
+
+				return (
+					<a
+						href={`/libro/${slug}`}
+						class="relative transition-colors hover:z-10 hover:scale-105 rounded-xl bg-[#F8F9FA] shadow-[18px_18px_34px_#d3d4d5,-18px_-18px_34px_#ffffff] "data-aos="flip-down">
+						<article class="flex">		
+							<img src={`/${img}`} alt="" class="mr-5 w-48 rounded-lg shadow-lg shadow-red-700 saturate-150" />
+						
+							<div class="flex flex-col justify-center ml-2">
+								<h2 class="mb-2 text-2xl font-texth1 text-[--var-color-text] leading-tight hover:underline">{title}</h2>
+								<p class="mb-4 text-gray-700 max-w-xs text-xs md:text-base">{description}</p>
+								<span class="text-xs"> <b class="animate-pulse">⏳</b> Lectura en {readTime} minutos.</span>
+							</div>
+						</article>
+					</a>
+				);
+			})}
+		</div>
+	</div>
+</section>

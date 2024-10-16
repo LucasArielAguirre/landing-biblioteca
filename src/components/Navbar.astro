@@ -1,0 +1,18 @@
+---
+import Book from "./icons/Book.astro"
+---
+<nav class="fixed z-30 w-full h-14 bg-[--var-bgcolor]  flex items-center px-5 shadow-md">
+    <div class="flex-1">
+        <a href="/" class=""> 
+            <Book/>
+        </a>
+    </div>
+    <ul class="flex gap-2 mr-4">
+        <li>
+            <a href="Inicio" class=" flex py-2 px-3 font-texth1 text-[--var-color-text] hover:underline decoration-[--var-color-text-red] hover:scale-110 transition-all duration-400 "> INICIO</a>
+        </li>
+        <li>
+            <a href="Inicio" class=" flex py-2 px-3 font-texth1 text-[--var-color-text] hover:underline decoration-[--var-color-text-red] hover:scale-110 transition-all duration-400 "> LIBROS</a>
+        </li>
+    </ul>
+</nav>
